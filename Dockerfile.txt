@@ -1,0 +1,29 @@
+# Gunakan base image Nginx
+FROM nginx:latest
+
+# Install Git (jika belum terinstall)
+RUN apt-get update && apt-get install -y git
+
+# Clone repositori GitHub
+RUN git clone https://github.com/yosiasevan/CapstoneCloud-205410171.git /tmp/repository
+
+# Membersihkan isi dari direktori /usr/share/nginx/html
+RUN rm -rf /usr/share/nginx/html/*
+
+# Pindahkan file dari /tmp/repository ke /usr/share/nginx/html
+RUN mv /tmp/repository/* /usr/share/nginx/html/
+
+# Port yang akan digunakan oleh container
+EXPOSE 80
+
+# Command untuk menjalankan server saat container dijalankan
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
+
+
+
+
+
+
